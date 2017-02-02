@@ -1,0 +1,64 @@
+Autor: Mateusz Pitura
+Projekt: Zaliczenie przedmiotu Jezyk C 2016/2017
+
+<help>
+
+Program do wizualizacji mapy bitowej w przestrzeni trojwymiarowej
+(jako mapa wysokosci 0...255.0)
+
+-> Wczytuje mape wysokosci (skale szarosci) jako wysokosci do tablicy wierzcholkow,
+nastepnie tworzy polaczenia pomiedzy nimi, by stworzyc trojkaty a nastepnie wizualizuje w 3D przestrzeni
+
+Program wykorzystuje:
+-Bilbioteki allegro5, allegro5_image (Wersja stable: 5.0)
+https://wiki.allegro.cc/index.php?title=Install_Allegro5_From_Git/Linux/Debian
+Dodatkowe Pakiety:
+apt-get install freeglut3-dev glew-utils libglew1.6-dev libfreeimage-dev
+apt-get install libgl1-mesa-dev
+
+Kompilacja:
+make
+
+-> w makefile jest sciezka dojscia do allegro w /usr/lib/ i /usr/lib/i386-linux-gnu (tam znajduja sie owe pliki)
+w przypadku braku plikow kompilacja bedzie niemozliwa a co za tym idzie trzeba recznie sprawdzic lokalizacje
+(powinna byc jednak prawidlowa - kompilacja na debian)
+
+Argumenty wywolania:
+
+-h [--help]
+wyswietla pomoc do aplikacji (ktora wlasnie jest wyswietlana)
+
+-n [--new_configuration]
+tworzy nowa konfiguracje (odpytuje uzytkownika
+kolejno o: plik, szerokosc, wysokosc (jesli 0 to taka jak wartosci obrazu), skale,
+wysokosc, szerokosc, tytuł okna, kolor glebi, czy ma renderowac w trybie wireframe czy solid))
+
+-c [--config] nazwa_pliku.cfg
+podaje nazwe pliku z konfiguracja (jezeli nie ma domyslny plik to config.cfg)
+
+-f [--file] nazwa_mapy.rozszerzenie
+podaje nowa nazwe pliku (bez tego parametru wartosc jest odczytywana z
+pliku config.cfg - w przypadku podania nowej wartosc stara wartosc w config.cfg
+zostaje nadpisana)
+
+-ww [--window_width] value
+Szerokosc okna
+w przypadku 0 wartosc domyslna (800)
+
+-wh [--window_height] value
+Wysokosc okna
+w przypadku 0 wartosc domyslna (600)
+
+-gs [--grid_scale] value
+skala terenu (odleglosc pomiedzy wierzcholkami)
+domyslnie 5.0
+
+--wireframe
+rysuje mape wysokosci w trybie siatki
+
+--solid
+standardowe rysowanie mapy wysokosci
+
+-clear [--clear_color] 255 255 255
+Defniuje kolor czyszczenia podany jako r g b (czerwony zielony niebieski) odpowiedni w przedziale <0; 255>
+w przypadku 0 wartosc domyslna (0,0,0) - czarny kolor
